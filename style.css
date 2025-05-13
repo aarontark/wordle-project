@@ -28,3 +28,7 @@ body {
     align-items: center;
     border-radius: .5rem;
 }
+
+.active {
+    background: #00000033;
+}
