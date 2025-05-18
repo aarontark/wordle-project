@@ -5,13 +5,13 @@ let letterInput = Array.from(activeRow.children);
 let currentIndex = 0;
 
 async function loadWords(inputWord) {
-  const response = await fetch('data/words.txt');
-  const text = await response.text();
-  words = text.split('\n').map(word => word.trim()).filter(Boolean);
-  if (words.includes(inputWord)) {
-    verifyTxt.style.display = 'block';
-  } else {
-    verifyTxt.style.display = 'none';
+    const response = await fetch('data/words.txt');
+    const text = await response.text();
+    words = text.split('\n').map(word => word.trim()).filter(Boolean);
+    if (words.includes(inputWord)) {
+        verifyTxt.style.display = 'block';
+    } else {
+        verifyTxt.style.display = 'none';
   }
 }
 
