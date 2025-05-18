@@ -1,5 +1,19 @@
-let letterInput = Array.from(document.querySelectorAll('.letter-input'));
+let guessContainer = document.querySelector('.guess_container');
+let guess_rows = Array.from(guessContainer);
+let activeRow = document.querySelector('.active_row');
+let letterInput = Array.from(activeRow.children);
 let currentIndex = 0;
+
+async function loadWords(inputWord) {
+  const response = await fetch('data/words.txt');
+  const text = await response.text();
+  words = text.split('\n').map(word => word.trim()).filter(Boolean);
+  if (words.includes(inputWord)) {
+    verifyTxt.style.display = 'block';
+  } else {
+    verifyTxt.style.display = 'none';
+  }
+}
 
 window.addEventListener('keydown', event => {
     currentActive = document.querySelector('.active');
@@ -9,9 +23,9 @@ window.addEventListener('keydown', event => {
             currentActive.innerHTML = '';
             return;
         } else {
+            currentIndex--;
             currentActive.innerHTML = '';
             currentActive.classList.remove('active');
-            currentIndex--;
             letterInput[currentIndex].classList.add('active');
             currentActive = document.querySelector('.active');
         }
@@ -26,10 +40,5 @@ window.addEventListener('keydown', event => {
         } else {
             return null;
         }
-    }
-    // current_active = document.querySelector('.active');
-    // current_active.innerHTML = event.key;
-    // current_index = letterInput.indexOf(current_active);
-    // current_active.classList.remove('active');
-    // letterInput[current_index + 1].classList.add('active');
+     }
 })
