@@ -3,16 +3,14 @@ let guess_rows = Array.from(guessContainer);
 let activeRow = document.querySelector('.active_row');
 let letterInput = Array.from(activeRow.children);
 let currentIndex = 0;
+let randomWord;
 
-async function loadWords(inputWord) {
+async function loadWords() {
     const response = await fetch('data/words.txt');
     const text = await response.text();
     words = text.split('\n').map(word => word.trim()).filter(Boolean);
-    if (words.includes(inputWord)) {
-        verifyTxt.style.display = 'block';
-    } else {
-        verifyTxt.style.display = 'none';
-  }
+    const randomIndex = Math.floor(Math.random() * 2316) - 1; 
+    randomWord = words[randomIndex];
 }
 
 window.addEventListener('keydown', event => {
@@ -42,3 +40,5 @@ window.addEventListener('keydown', event => {
         }
      }
 })
+
+loadWords();
