@@ -14,31 +14,40 @@ async function loadWords() {
 }
 
 window.addEventListener('keydown', event => {
-    currentActive = document.querySelector('.active');
+    // currentActive = document.querySelector('.active');
     validLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    if (event.key == 'Backspace') {
-        if (currentIndex == 0){
-            currentActive.innerHTML = '';
-            return;
-        } else {
-            currentIndex--;
-            currentActive.innerHTML = '';
-            currentActive.classList.remove('active');
-            letterInput[currentIndex].classList.add('active');
+    if (validLetters.includes(event.key.toUpperCase())) {       
+        if (currentIndex == 4) {
             currentActive = document.querySelector('.active');
-        }
-    } else if (validLetters.includes(event.key.toUpperCase())) {
-        if (currentIndex < letterInput.length - 1) {
             currentActive.innerHTML = event.key.toUpperCase();
-            currentActive.classList.remove('active');
             currentIndex++;
-            letterInput[currentIndex].classList.add('active');
-        } else if (currentIndex == 4) {
+            currentActive.classList.remove('active');
+        } else if (currentIndex < 4) {
+            console.log(currentIndex);
+            currentActive = document.querySelector('.active');
             currentActive.innerHTML = event.key.toUpperCase();
+            currentIndex++;
+            currentActive.classList.remove('active');
+            letterInput[currentIndex].classList.add('active');
         } else {
-            return null;
+            console.log(currentIndex);
+            return;
         }
-     }
+    } else if (event.key == 'Backspace') {
+        if (currentIndex == 5) {
+            currentIndex--;
+            currentActive = letterInput[currentIndex];
+            currentActive.classList.add('active');
+            currentActive.innerHTML = '';
+        } else if (currentIndex <= 4 && currentIndex > 0) {
+            currentActive = letterInput[currentIndex];
+            currentActive.classList.remove('active');
+            currentIndex--;
+            currentActive = letterInput[currentIndex];
+            currentActive.classList.add('active');
+            currentActive.innerHTML = '';
+        }
+    }
 })
 
 loadWords();
