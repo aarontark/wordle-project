@@ -3,13 +3,15 @@ let guess_rows = Array.from(guessContainer);
 let activeRow = document.querySelector('.active_row');
 let letterInput = Array.from(activeRow.children);
 let currentIndex = 0;
+let wordList;
 let randomWord;
 
 async function loadWords() {
     const response = await fetch('data/words.txt');
     const text = await response.text();
     words = text.split('\n').map(word => word.trim()).filter(Boolean);
-    const randomIndex = Math.floor(Math.random() * 2316) - 1; 
+    const randomIndex = Math.floor(Math.random() * 2316) - 1;
+    wordList = words; 
     randomWord = words[randomIndex];
 }
 
@@ -46,6 +48,16 @@ window.addEventListener('keydown', event => {
             currentActive = letterInput[currentIndex];
             currentActive.classList.add('active');
             currentActive.innerHTML = '';
+        }
+    } else if (event.key == 'Enter') {
+        userWord = '';
+        for (i = 0; i < letterInput.length; i++) {
+            userWord += letterInput[i].innerHTML;
+        }
+        if (userWord.length < 5) {
+            alert('guess length too small');
+        } else if (!wordList.includes(userWord)) {
+            alert('word not in word list')
         }
     }
 })
