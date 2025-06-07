@@ -43,3 +43,32 @@ body {
 .active {
     background: #00000033;
 }
+
+.pulse-anim-green {
+    animation: pulse .5s;
+    color: #fff;
+}
+
+.pulse-anim-yellow {
+    animation: pulse .5s;
+    color: #fff;
+}
+
+.pulse-anim-grey {
+    animation: pulse .5s;
+    color: #fff;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
