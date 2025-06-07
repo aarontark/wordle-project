@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'franklin';
+    src: url('fonts/franklin-normal-600.ttf');
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -10,7 +15,8 @@ body {
     justify-content: center;
     margin-top: 3rem;
     min-height: 100vh;
-    font-family: t
+    font-family: 'franklin';
+    font-weight: bold;
 }
 
 .guess_container {
