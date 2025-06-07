@@ -15,6 +15,18 @@ async function loadWords() {
     randomWord = words[randomIndex];
 }
 
+function applyStyle(arrayIndex, delay) {
+    setTimeout(() => {
+        if (arrayIndex.innerHTML == 'A') {
+            arrayIndex.classList.add('pulse-anim-green');
+        } else if (arrayIndex.innerHTML == 'B') {
+            arrayIndex.classList.add('pulse-anim-yellow');
+        } else {
+            arrayIndex.classList.add('pulse-anim-grey');
+        }
+    }, delay)
+}
+
 window.addEventListener('keydown', event => {
     // currentActive = document.querySelector('.active');
     validLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
