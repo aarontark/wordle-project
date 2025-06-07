@@ -54,16 +54,19 @@ body {
 
 .pulse-anim-green {
     animation: pulse .5s;
-    color: #fff;
+    background-color: #538d4e;
+    border-color: #ffffff00;
 }
 
 .pulse-anim-yellow {
     animation: pulse .5s;
+    background-color: #b59f3b;
     color: #fff;
 }
 
 .pulse-anim-grey {
     animation: pulse .5s;
+    background-color: #3a3a3c;
     color: #fff;
 }
 

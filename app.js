@@ -12,14 +12,14 @@ async function loadWords() {
     words = text.split('\n').map(word => word.trim()).filter(Boolean);
     const randomIndex = Math.floor(Math.random() * 2316) - 1;
     wordList = words; 
-    randomWord = words[randomIndex];
+    randomWord = words[randomIndex].toUpperCase();
 }
 
-function applyStyle(arrayIndex, delay) {
+function applyStyle(arrayIndex, delay, color) {
     setTimeout(() => {
-        if (arrayIndex.innerHTML == 'A') {
+        if (color == 'green') {
             arrayIndex.classList.add('pulse-anim-green');
-        } else if (arrayIndex.innerHTML == 'B') {
+        } else if (color == 'yellow') {
             arrayIndex.classList.add('pulse-anim-yellow');
         } else {
             arrayIndex.classList.add('pulse-anim-grey');
@@ -27,9 +27,12 @@ function applyStyle(arrayIndex, delay) {
     }, delay)
 }
 
+// arrayIndex.classList.add('pulse-anim-green');
+
 window.addEventListener('keydown', event => {
     // currentActive = document.querySelector('.active');
     validLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    console.log(randomWord);
     if (validLetters.includes(event.key.toUpperCase())) {       
         if (currentIndex == 4) {
             currentActive = document.querySelector('.active');
@@ -63,13 +66,37 @@ window.addEventListener('keydown', event => {
         }
     } else if (event.key == 'Enter') {
         userWord = '';
-        for (i = 0; i < letterInput.length; i++) {
+        for (let i = 0; i < letterInput.length; i++) {
             userWord += letterInput[i].innerHTML;
         }
+        console.log(randomWord);
+        console.log(userWord);
         if (userWord.length < 5) {
             alert('guess length too small');
-        } else if (!wordList.includes(userWord)) {
+        } else if (!wordList.includes(userWord.toLowerCase())) {
             alert('word not in word list')
+        } else {
+            if (userWord == randomWord) {
+                for (let i = 0; i < userWord.length; i++) {
+                    applyStyle(letterInput[i], i * 300, 'green');
+                }
+            } else {
+                let applyStyleArray = [];
+                let randomWordArray = randomWord.split('')
+                for (let i = 0; i < userWord.length; i++){
+                    if (userWord[i] == randomWord[i]) {
+                        applyStyleArray.push('green');
+                    } else if (randomWordArray.includes(userWord[i])) {
+                        applyStyleArray.push('yellow');
+                        randomWordArray.slice(i, 1);
+                    } else {
+                        applyStyleArray.push('grey');
+                    }
+                }
+                for (let i = 0; i < letterInput.length; i++) {
+                    applyStyle(letterInput[i], i * 300, applyStyleArray[i]);
+                }
+            }
         }
     }
 })
