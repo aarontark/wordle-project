@@ -5,10 +5,12 @@
 }
 
 body {
+    background-color: #121213;
     display: flex;
     justify-content: center;
     margin-top: 3rem;
     min-height: 100vh;
+    font-family: t
 }
 
 .guess_container {
@@ -29,7 +31,8 @@ body {
 
 .letter-input {
     text-align: center;
-    border: 2px solid rgba(0, 0, 0, 0.322);
+    color: #fff;
+    border: 2px solid rgb(58, 58, 60);
     outline: none;
     width: 3rem;
     height: 3rem;
@@ -37,11 +40,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: .25rem;
 }
 
 .active {
-    background: #00000033;
+    background: #7b7a7a33;
 }
 
 .pulse-anim-green {
