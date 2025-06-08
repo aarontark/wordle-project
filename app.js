@@ -20,47 +20,7 @@ async function loadWords() {
     randomWord = words[randomIndex].toUpperCase();
 }
 
-function applyStyle(arrayIndex, delay, color) {
-    setTimeout(() => {
-        if (color == 'green') {
-            arrayIndex.classList.add('pulse-anim-green');
-        } else if (color == 'yellow') {
-            arrayIndex.classList.add('pulse-anim-yellow');
-        } else {
-            arrayIndex.classList.add('pulse-anim-grey');
-        }
-    }, delay)
-}
-
-function endGame(result) {
-    setTimeout(() => {
-        wordDisplay.innerHTML = randomWord;
-        if (result == 'win') {
-            endTitle.innerHTML = 'You win!';
-            endContainer.style.display = 'flex';
-        } else {
-            endTitle.innerHTML = 'You lose!';
-            endContainer.style.display = 'flex';
-        }
-    }, 2500)
-}
-
-function changeRow(){
-    setTimeout(() => {
-        guessRowIndex++;
-        activeRow.classList.remove('active_row');
-        activeRow = guessRows[guessRowIndex];
-        activeRow.classList.add('active_row');
-        letterInput = Array.from(activeRow.children);
-        letterInput[0].classList.add('active');
-        currentIndex = 0;
-    }, 1800)
-}
-
-// arrayIndex.classList.add('pulse-anim-green');
-
-window.addEventListener('keydown', event => {
-    // currentActive = document.querySelector('.active');
+function windowListener(event) {
     validLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     console.log(randomWord);
     if (validLetters.includes(event.key.toUpperCase())) {       
@@ -130,11 +90,60 @@ window.addEventListener('keydown', event => {
                 if (guessRowIndex >= 5) {
                     endGame('lose');
                 } else {
+                    window.removeEventListener('keydown', windowListener);
                     changeRow();
+                    addWindowEvent();
                 }
             }
         }
     }
+}
+
+function applyStyle(arrayIndex, delay, color) {
+    setTimeout(() => {
+        if (color == 'green') {
+            arrayIndex.classList.add('pulse-anim-green');
+        } else if (color == 'yellow') {
+            arrayIndex.classList.add('pulse-anim-yellow');
+        } else {
+            arrayIndex.classList.add('pulse-anim-grey');
+        }
+    }, delay)
+}
+
+function endGame(result) {
+    setTimeout(() => {
+        wordDisplay.innerHTML = randomWord;
+        if (result == 'win') {
+            endTitle.innerHTML = 'You win!';
+            endContainer.style.display = 'flex';
+        } else {
+            endTitle.innerHTML = 'You lose!';
+            endContainer.style.display = 'flex';
+        }
+    }, 2500)
+}
+
+function changeRow(){
+    setTimeout(() => {
+        guessRowIndex++;
+        activeRow.classList.remove('active_row');
+        activeRow = guessRows[guessRowIndex];
+        activeRow.classList.add('active_row');
+        letterInput = Array.from(activeRow.children);
+        letterInput[0].classList.add('active');
+        currentIndex = 0;
+        window.addEventListener('keydown', windowListener);
+    }, 1800)
+}
+
+// arrayIndex.classList.add('pulse-anim-green');
+
+window.addEventListener('keydown', windowListener);
+    
+
+restartBtn.addEventListener('click', () => {
+    window.location.reload();
 })
 
 loadWords();
