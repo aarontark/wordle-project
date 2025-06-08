@@ -2,6 +2,10 @@ let guessContainer = document.querySelector('.guess_container');
 let guessRows = Array.from(guessContainer.children);
 let activeRow = document.querySelector('.active_row');
 let letterInput = Array.from(activeRow.children);
+let endContainer = document.querySelector('.end_container');
+let endTitle = document.querySelector('.end_title')
+let restartBtn = document.querySelector('.restart_btn');
+let wordDisplay = document.querySelector('.word');
 let currentIndex = 0;
 let guessRowIndex = 0;
 let wordList;
@@ -26,6 +30,31 @@ function applyStyle(arrayIndex, delay, color) {
             arrayIndex.classList.add('pulse-anim-grey');
         }
     }, delay)
+}
+
+function endGame(result) {
+    setTimeout(() => {
+        wordDisplay.innerHTML = randomWord;
+        if (result == 'win') {
+            endTitle.innerHTML = 'You win!';
+            endContainer.style.display = 'flex';
+        } else {
+            endTitle.innerHTML = 'You lose!';
+            endContainer.style.display = 'flex';
+        }
+    }, 2500)
+}
+
+function changeRow(){
+    setTimeout(() => {
+        guessRowIndex++;
+        activeRow.classList.remove('active_row');
+        activeRow = guessRows[guessRowIndex];
+        activeRow.classList.add('active_row');
+        letterInput = Array.from(activeRow.children);
+        letterInput[0].classList.add('active');
+        currentIndex = 0;
+    }, 1800)
 }
 
 // arrayIndex.classList.add('pulse-anim-green');
@@ -73,7 +102,7 @@ window.addEventListener('keydown', event => {
         console.log(randomWord);
         console.log(userWord);
         if (userWord.length < 5) {
-            alert('guess length too small');
+            alert('not enough letters');
         } else if (!wordList.includes(userWord.toLowerCase())) {
             alert('word not in word list')
         } else {
@@ -81,6 +110,7 @@ window.addEventListener('keydown', event => {
                 for (let i = 0; i < userWord.length; i++) {
                     applyStyle(letterInput[i], i * 300, 'green');
                 }
+                endGame('win');
             } else {
                 let applyStyleArray = [];
                 let randomWordArray = randomWord.split('')
@@ -97,13 +127,11 @@ window.addEventListener('keydown', event => {
                 for (let i = 0; i < letterInput.length; i++) {
                     applyStyle(letterInput[i], i * 300, applyStyleArray[i]);
                 }
-                guessRowIndex++;
-                activeRow.classList.remove('active_row');
-                activeRow = guessRows[guessRowIndex];
-                activeRow.classList.add('active_row');
-                letterInput = Array.from(activeRow.children);
-                letterInput[0].classList.add('active');
-                currentIndex = 0;
+                if (guessRowIndex >= 5) {
+                    endGame('lose');
+                } else {
+                    changeRow();
+                }
             }
         }
     }
