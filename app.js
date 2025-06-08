@@ -1,8 +1,9 @@
 let guessContainer = document.querySelector('.guess_container');
-let guess_rows = Array.from(guessContainer);
+let guessRows = Array.from(guessContainer.children);
 let activeRow = document.querySelector('.active_row');
 let letterInput = Array.from(activeRow.children);
 let currentIndex = 0;
+let guessRowIndex = 0;
 let wordList;
 let randomWord;
 
@@ -65,7 +66,7 @@ window.addEventListener('keydown', event => {
             currentActive.innerHTML = '';
         }
     } else if (event.key == 'Enter') {
-        userWord = '';
+        let userWord = '';
         for (let i = 0; i < letterInput.length; i++) {
             userWord += letterInput[i].innerHTML;
         }
@@ -96,6 +97,13 @@ window.addEventListener('keydown', event => {
                 for (let i = 0; i < letterInput.length; i++) {
                     applyStyle(letterInput[i], i * 300, applyStyleArray[i]);
                 }
+                guessRowIndex++;
+                activeRow.classList.remove('active_row');
+                activeRow = guessRows[guessRowIndex];
+                activeRow.classList.add('active_row');
+                letterInput = Array.from(activeRow.children);
+                letterInput[0].classList.add('active');
+                currentIndex = 0;
             }
         }
     }
