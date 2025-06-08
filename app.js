@@ -22,7 +22,6 @@ async function loadWords() {
 
 function windowListener(event) {
     validLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    console.log(randomWord);
     if (validLetters.includes(event.key.toUpperCase())) {       
         if (currentIndex == 4) {
             currentActive = document.querySelector('.active');
@@ -30,14 +29,12 @@ function windowListener(event) {
             currentIndex++;
             currentActive.classList.remove('active');
         } else if (currentIndex < 4) {
-            console.log(currentIndex);
             currentActive = document.querySelector('.active');
             currentActive.innerHTML = event.key.toUpperCase();
             currentIndex++;
             currentActive.classList.remove('active');
             letterInput[currentIndex].classList.add('active');
         } else {
-            console.log(currentIndex);
             return;
         }
     } else if (event.key == 'Backspace') {
@@ -59,8 +56,6 @@ function windowListener(event) {
         for (let i = 0; i < letterInput.length; i++) {
             userWord += letterInput[i].innerHTML;
         }
-        console.log(randomWord);
-        console.log(userWord);
         if (userWord.length < 5) {
             alert('not enough letters');
         } else if (!wordList.includes(userWord.toLowerCase())) {
