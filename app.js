@@ -74,7 +74,7 @@ function windowListener(event) {
                         applyStyleArray.push('green');
                     } else if (randomWordArray.includes(userWord[i])) {
                         applyStyleArray.push('yellow');
-                        randomWordArray.slice(i, 1);
+                        randomWordArray[i] = '*';
                     } else {
                         applyStyleArray.push('grey');
                     }
