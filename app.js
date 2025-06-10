@@ -70,18 +70,11 @@ function windowListener(event) {
                 endGame('win');
             // if user guesses incorrect word
             } else {
-                let applyStyleArray = [];
-                let randomWordArray = randomWord.split('')
-                for (let i = 0; i < userWord.length; i++){
-                    if (userWord[i] == randomWord[i]) {
-                        applyStyleArray.push('green');
-                    } else if (randomWordArray.includes(userWord[i])) {
-                        applyStyleArray.push('yellow');
-                        randomWordArray[i] = '*';
-                    } else {
-                        applyStyleArray.push('grey');
-                    }
-                }
+                let applyStyleArray = ['grey', 'grey', 'grey', 'grey', 'grey'];
+                let userWordArray = userWord.split('');
+                let randomWordArray = randomWord.split('');
+                checkCorrectLetter(userWordArray, randomWordArray, applyStyleArray);
+                checkMisplacedLetter(userWordArray, randomWordArray, applyStyleArray);
                 for (let i = 0; i < letterInput.length; i++) {
                     applyStyle(letterInput[i], i * 300, applyStyleArray[i]);
                 }
@@ -125,14 +118,40 @@ function endGame(result) {
 function changeRow(){
     setTimeout(() => {
         guessRowIndex++;
-        activeRow.classList.remove('active_row');
         activeRow = guessRows[guessRowIndex];
-        activeRow.classList.add('active_row');
         letterInput = Array.from(activeRow.children);
         letterInput[0].classList.add('active');
         currentIndex = 0;
         window.addEventListener('keydown', windowListener);
     }, 1800)
+}
+
+function checkCorrectLetter(userWordArray, randomWordArray, styleArray) {
+    for (let i = 0; i < userWordArray.length; i++) {
+        if (userWordArray[i] == randomWordArray[i]) {
+            styleArray[i] = 'green';
+            randomWordArray[i] = '*';
+            userWordArray[i] = '*';
+        }
+    }
+}
+
+function checkMisplacedLetter(userWordArray, randomWordArray, styleArray) {
+    for (let i = 0; i < userWordArray.length; i++) {
+        if (randomWordArray.includes(userWordArray[i])) {
+            for (let j = 0; j < randomWordArray.length; j++) {
+                if (userWordArray[i] == randomWordArray[j]) {
+                    if (styleArray[i] == 'green') {
+                        break;
+                    } else {
+                        styleArray[i] = 'yellow';
+                        randomWordArray[j] = '*';
+                        break;
+                    }
+                }
+            }
+        }
+    }
 }
 
 // arrayIndex.classList.add('pulse-anim-green');
