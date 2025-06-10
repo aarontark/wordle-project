@@ -52,6 +52,7 @@ function windowListener(event) {
             currentActive.innerHTML = '';
         }
     } else if (event.key == 'Enter') {
+        console.log(randomWord);
         let userWord = '';
         for (let i = 0; i < letterInput.length; i++) {
             userWord += letterInput[i].innerHTML;
@@ -61,11 +62,13 @@ function windowListener(event) {
         } else if (!wordList.includes(userWord.toLowerCase())) {
             alert('word not in word list')
         } else {
+            // if user guesses correct word
             if (userWord == randomWord) {
                 for (let i = 0; i < userWord.length; i++) {
                     applyStyle(letterInput[i], i * 300, 'green');
                 }
                 endGame('win');
+            // if user guesses incorrect word
             } else {
                 let applyStyleArray = [];
                 let randomWordArray = randomWord.split('')
@@ -83,11 +86,11 @@ function windowListener(event) {
                     applyStyle(letterInput[i], i * 300, applyStyleArray[i]);
                 }
                 if (guessRowIndex >= 5) {
+                    window.removeEventListener('keydown', windowListener);
                     endGame('lose');
                 } else {
                     window.removeEventListener('keydown', windowListener);
                     changeRow();
-                    addWindowEvent();
                 }
             }
         }
