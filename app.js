@@ -52,7 +52,6 @@ function windowListener(event) {
             currentActive.innerHTML = '';
         }
     } else if (event.key == 'Enter') {
-        console.log(randomWord);
         let userWord = '';
         for (let i = 0; i < letterInput.length; i++) {
             userWord += letterInput[i].innerHTML;
