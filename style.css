@@ -147,3 +147,10 @@ body {
         transform: scaleY(1);
     }
 }
+
+@media (min-width: 500px) {
+    .letter-input {
+        max-width: 3rem;
+        font-size: 2rem;
+    }
+}
