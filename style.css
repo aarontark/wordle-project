@@ -150,7 +150,20 @@ body {
 
 @media (min-width: 500px) {
     .letter-input {
-        max-width: 3rem;
+        width: 3rem;
+        max-width: 6rem;
         font-size: 2rem;
+    }
+}
+
+@media (min-width: 1400px) {
+
+    .guess_container {
+        margin-top: 6.5rem;
+    }
+    .letter-input {
+        width: 5%;
+        max-width: 5rem;
+        font-size: 3rem;
     }
 }
