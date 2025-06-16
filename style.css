@@ -85,7 +85,7 @@ body {
     gap: .3rem;
 }
 
-.key_input {
+.key_input, .enter_key, .backspace_key {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -208,11 +208,34 @@ body {
 }
 
 @media (min-width: 1400px) {
+    
+    .game_container {
+        height: 100vh;
+    }
+
     .guess_container {
         margin-top: 6.5rem;
     }
     .letter-input {
-        width: 4rem;
-        font-size: 3rem;
+        width: 10%;
+        max-width: 5.75rem;
+        font-size: 3.75rem;
+    }
+
+    .key_input {
+        max-width: 4rem;
+        height: 6rem;
+        font-size: 2rem;
+    }
+
+    .enter_key, .backspace_key {
+        height: 6rem;
+        max-width: 8rem;
+        width: 8rem;
+        font-size: 1.5rem;
+    }
+
+    .backspace_icon {
+        width: 70px;
     }
 }
