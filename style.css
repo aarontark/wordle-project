@@ -10,6 +10,12 @@
     font-family: inherit;
 }
 
+html, body, body > .game_container {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     position: relative;
     background-color: #121213;
@@ -18,7 +24,6 @@ body {
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
-    height: 100%;
     font-family: 'franklin';
     font-weight: bold;
 }
