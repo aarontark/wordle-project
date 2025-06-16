@@ -18,7 +18,8 @@ body {
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
-    min-height: 100dvh;
+    min-height: 100svh;
+    max-height: 100svh;
     font-family: 'franklin';
     font-weight: bold;
 }
