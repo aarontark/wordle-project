@@ -7,84 +7,88 @@
     <title>Wordle</title>
 </head>
 <body>
-    <div class="guess_container">
-        <div class="guess_row active_row">
-            <div class="letter-input active"></div>
-            <div class="letter-input"></div>
-            <div class="letter-input"></div>
-            <div class="letter-input"></div>
-            <div class="letter-input"></div>
+    <div class="game_container">
+        <div class="guess_container">
+            <div class="guess_row active_row">
+                <div class="letter-input active"></div>
+                <div class="letter-input"></div>
+                <div class="letter-input"></div>
+                <div class="letter-input"></div>
+                <div class="letter-input"></div>
+            </div>
+            <div class="guess_row">
+                <div class="letter-input"></div>
+                <div class="letter-input"></div>
+                <div class="letter-input"></div>
+                <div class="letter-input"></div>
+                <div class="letter-input"></div>
+            </div>
+            <div class="guess_row">
+                <div class="letter-input"></div>
+                <div class="letter-input"></div>
+                <div class="letter-input"></div>
+                <div class="letter-input"></div>
+                <div class="letter-input"></div>
+            </div>
+            <div class="guess_row">
+                <div class="letter-input"></div>
+                <div class="letter-input"></div>
+                <div class="letter-input"></div>
+                <div class="letter-input"></div>
+                <div class="letter-input"></div>
+            </div>
+            <div class="guess_row">
+                <div class="letter-input"></div>
+                <div class="letter-input"></div>
+                <div class="letter-input"></div>
+                <div class="letter-input"></div>
+                <div class="letter-input"></div>
+            </div>
+            <div class="guess_row">
+                <div class="letter-input"></div>
+                <div class="letter-input"></div>
+                <div class="letter-input"></div>
+                <div class="letter-input"></div>
+                <div class="letter-input"></div>
+            </div>
         </div>
-        <div class="guess_row">
-            <div class="letter-input"></div>
-            <div class="letter-input"></div>
-            <div class="letter-input"></div>
-            <div class="letter-input"></div>
-            <div class="letter-input"></div>
-        </div>
-        <div class="guess_row">
-            <div class="letter-input"></div>
-            <div class="letter-input"></div>
-            <div class="letter-input"></div>
-            <div class="letter-input"></div>
-            <div class="letter-input"></div>
-        </div>
-        <div class="guess_row">
-            <div class="letter-input"></div>
-            <div class="letter-input"></div>
-            <div class="letter-input"></div>
-            <div class="letter-input"></div>
-            <div class="letter-input"></div>
-        </div>
-        <div class="guess_row">
-            <div class="letter-input"></div>
-            <div class="letter-input"></div>
-            <div class="letter-input"></div>
-            <div class="letter-input"></div>
-            <div class="letter-input"></div>
-        </div>
-        <div class="guess_row">
-            <div class="letter-input"></div>
-            <div class="letter-input"></div>
-            <div class="letter-input"></div>
-            <div class="letter-input"></div>
-            <div class="letter-input"></div>
-        </div>
-    </div>
-    <div class="keyboard_container">
-        <div class="keyboard_row">
-            <div class="key_input">Q</div>
-            <div class="key_input">W</div>
-            <div class="key_input">E</div>
-            <div class="key_input">R</div>
-            <div class="key_input">T</div>
-            <div class="key_input">Y</div>
-            <div class="key_input">U</div>
-            <div class="key_input">I</div>
-            <div class="key_input">O</div>
-            <div class="key_input">P</div>
-        </div>
-        <div class="keyboard_row">
-            <div class="key_input">A</div>
-            <div class="key_input">S</div>
-            <div class="key_input">D</div>
-            <div class="key_input">F</div>
-            <div class="key_input">G</div>
-            <div class="key_input">H</div>
-            <div class="key_input">J</div>
-            <div class="key_input">K</div>
-            <div class="key_input">L</div>
-        </div>
-        <div class="keyboard_row">
-            <div class="enter_key">ENTER</div>
-            <div class="key_input">Z</div>
-            <div class="key_input">X</div>
-            <div class="key_input">C</div>
-            <div class="key_input">V</div>
-            <div class="key_input">B</div>
-            <div class="key_input">N</div>
-            <div class="key_input">M</div>
-            <div class="backspace_key">BACKSPACE</div>
+        <div class="keyboard_container">
+            <div class="keyboard_row">
+                <div class="key_input">Q</div>
+                <div class="key_input">W</div>
+                <div class="key_input">E</div>
+                <div class="key_input">R</div>
+                <div class="key_input">T</div>
+                <div class="key_input">Y</div>
+                <div class="key_input">U</div>
+                <div class="key_input">I</div>
+                <div class="key_input">O</div>
+                <div class="key_input">P</div>
+            </div>
+            <div class="keyboard_row">
+                <div class="key_input">A</div>
+                <div class="key_input">S</div>
+                <div class="key_input">D</div>
+                <div class="key_input">F</div>
+                <div class="key_input">G</div>
+                <div class="key_input">H</div>
+                <div class="key_input">J</div>
+                <div class="key_input">K</div>
+                <div class="key_input">L</div>
+            </div>
+            <div class="keyboard_row">
+                <div class="key_input enter_key">ENTER</div>
+                <div class="key_input">Z</div>
+                <div class="key_input">X</div>
+                <div class="key_input">C</div>
+                <div class="key_input">V</div>
+                <div class="key_input">B</div>
+                <div class="key_input">N</div>
+                <div class="key_input">M</div>
+                <div class="key_input backspace_key">
+                    <img class="backspace_icon" src="./icons/backspace-svgrepo-com.svg" alt="">
+                </div>
+            </div>
         </div>
     </div>
     <div class="end_container">
