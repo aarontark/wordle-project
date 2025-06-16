@@ -24,7 +24,8 @@ body {
 
 .game_container {
     display: flex;
-    min-height: 95vh;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     width: 100%;
     flex-direction: column;
     justify-content: space-between;
