@@ -10,12 +10,6 @@
     font-family: inherit;
 }
 
-html, body, body > .game_container {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
 body {
     position: relative;
     background-color: #121213;
@@ -30,8 +24,7 @@ body {
 
 .game_container {
     display: flex;
-    min-height: 100vh;
-    max-height: 100vh;
+    min-height: 95vh;
     width: 100%;
     flex-direction: column;
     justify-content: space-between;
