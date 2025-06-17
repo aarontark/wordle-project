@@ -20,72 +20,85 @@ async function loadWords() {
     randomWord = words[randomIndex].toUpperCase();
 }
 
+function letterEvent(key) {
+    if (currentIndex == 4) {
+        currentActive = document.querySelector('.active');
+        currentActive.innerHTML = key.toUpperCase();
+        currentIndex++;
+        currentActive.classList.remove('active');
+    } else if (currentIndex < 4) {
+        currentActive = document.querySelector('.active');
+        currentActive.innerHTML = key.toUpperCase();
+        currentIndex++;
+        currentActive.classList.remove('active');
+        letterInput[currentIndex].classList.add('active');
+    } else {
+        return;
+    }
+}
+
+function backspaceEvent() {
+    if (currentIndex == 5) {
+        currentIndex--;
+        currentActive = letterInput[currentIndex];
+        currentActive.classList.add('active');
+        currentActive.innerHTML = '';
+    } else if (currentIndex <= 4 && currentIndex > 0) {
+        currentActive = letterInput[currentIndex];
+        currentActive.classList.remove('active');
+        currentIndex--;
+        currentActive = letterInput[currentIndex];
+        currentActive.classList.add('active');
+        currentActive.innerHTML = '';
+    }
+}
+
+function enterEvent() {
+    let userWord = '';
+    for (let i = 0; i < letterInput.length; i++) {
+        userWord += letterInput[i].innerHTML;
+    }
+    if (userWord.length < 5) {
+        alert('not enough letters');
+    } else if (!wordList.includes(userWord.toLowerCase())) {
+        alert('word not in word list')
+    } else {
+        // if user guesses correct word
+        if (userWord == randomWord) {
+            for (let i = 0; i < userWord.length; i++) {
+                applyStyle(letterInput[i], i * 300, 'green');
+            }
+            endGame('win');
+            // if user guesses incorrect word
+        } else {
+            let applyStyleArray = ['grey', 'grey', 'grey', 'grey', 'grey'];
+            let userWordArray = userWord.split('');
+            let randomWordArray = randomWord.split('');
+            checkCorrectLetter(userWordArray, randomWordArray, applyStyleArray);
+            checkMisplacedLetter(userWordArray, randomWordArray, applyStyleArray);
+            for (let i = 0; i < letterInput.length; i++) {
+                applyStyle(letterInput[i], i * 300, applyStyleArray[i]);
+            }
+            if (guessRowIndex >= 5) {
+                window.removeEventListener('keydown', windowListener);
+                endGame('lose');
+            } else {
+                window.removeEventListener('keydown', windowListener);
+                changeRow();
+            }
+        }
+    }
+}
+
 function windowListener(event) {
     validLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     if (validLetters.includes(event.key.toUpperCase())) {       
-        if (currentIndex == 4) {
-            currentActive = document.querySelector('.active');
-            currentActive.innerHTML = event.key.toUpperCase();
-            currentIndex++;
-            currentActive.classList.remove('active');
-        } else if (currentIndex < 4) {
-            currentActive = document.querySelector('.active');
-            currentActive.innerHTML = event.key.toUpperCase();
-            currentIndex++;
-            currentActive.classList.remove('active');
-            letterInput[currentIndex].classList.add('active');
-        } else {
-            return;
-        }
+        letterEvent(event.key);
+        console.log('hi');
     } else if (event.key == 'Backspace') {
-        if (currentIndex == 5) {
-            currentIndex--;
-            currentActive = letterInput[currentIndex];
-            currentActive.classList.add('active');
-            currentActive.innerHTML = '';
-        } else if (currentIndex <= 4 && currentIndex > 0) {
-            currentActive = letterInput[currentIndex];
-            currentActive.classList.remove('active');
-            currentIndex--;
-            currentActive = letterInput[currentIndex];
-            currentActive.classList.add('active');
-            currentActive.innerHTML = '';
-        }
+        backspaceEvent();
     } else if (event.key == 'Enter') {
-        let userWord = '';
-        for (let i = 0; i < letterInput.length; i++) {
-            userWord += letterInput[i].innerHTML;
-        }
-        if (userWord.length < 5) {
-            alert('not enough letters');
-        } else if (!wordList.includes(userWord.toLowerCase())) {
-            alert('word not in word list')
-        } else {
-            // if user guesses correct word
-            if (userWord == randomWord) {
-                for (let i = 0; i < userWord.length; i++) {
-                    applyStyle(letterInput[i], i * 300, 'green');
-                }
-                endGame('win');
-            // if user guesses incorrect word
-            } else {
-                let applyStyleArray = ['grey', 'grey', 'grey', 'grey', 'grey'];
-                let userWordArray = userWord.split('');
-                let randomWordArray = randomWord.split('');
-                checkCorrectLetter(userWordArray, randomWordArray, applyStyleArray);
-                checkMisplacedLetter(userWordArray, randomWordArray, applyStyleArray);
-                for (let i = 0; i < letterInput.length; i++) {
-                    applyStyle(letterInput[i], i * 300, applyStyleArray[i]);
-                }
-                if (guessRowIndex >= 5) {
-                    window.removeEventListener('keydown', windowListener);
-                    endGame('lose');
-                } else {
-                    window.removeEventListener('keydown', windowListener);
-                    changeRow();
-                }
-            }
-        }
+        enterEvent();
     }
 }
 
