@@ -2,6 +2,9 @@ let guessContainer = document.querySelector('.guess_container');
 let guessRows = Array.from(guessContainer.children);
 let activeRow = document.querySelector('.active_row');
 let letterInput = Array.from(activeRow.children);
+let keyboardLetters = Array.from(document.querySelectorAll('.key_input'));
+let enterKey = document.querySelector('.enter_key');
+let backspaceKey = document.querySelector('.backspace_key')
 let endContainer = document.querySelector('.end_container');
 let endTitle = document.querySelector('.end_title')
 let restartBtn = document.querySelector('.restart_btn');
@@ -10,6 +13,8 @@ let currentIndex = 0;
 let guessRowIndex = 0;
 let wordList;
 let randomWord;
+
+console.log(enterKey);
 
 async function loadWords() {
     const response = await fetch('data/words.txt');
