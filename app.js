@@ -174,7 +174,14 @@ function checkMisplacedLetter(userWordArray, randomWordArray, styleArray) {
 // arrayIndex.classList.add('pulse-anim-green');
 
 window.addEventListener('keydown', windowListener);
-    
+
+for (const letter of keyboardLetters) {
+    letter.addEventListener('click', () => letterEvent(letter.innerHTML));
+}
+
+enterKey.addEventListener('click', enterEvent);
+
+backspaceKey.addEventListener('click', backspaceEvent);
 
 restartBtn.addEventListener('click', () => {
     window.location.reload();
