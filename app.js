@@ -179,11 +179,11 @@ for (const letter of keyboardLetters) {
     letter.addEventListener('click', () => letterEvent(letter.innerHTML));
 }
 
-enterKey.addEventListener('click', enterEvent);
+enterKey.addEventListener('touchstart', enterEvent);
 
-backspaceKey.addEventListener('click', backspaceEvent);
+backspaceKey.addEventListener('touchstart', backspaceEvent);
 
-restartBtn.addEventListener('click', () => {
+restartBtn.addEventListener('touchstart', () => {
     window.location.reload();
 })
 
