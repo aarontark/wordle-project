@@ -14,8 +14,6 @@ let guessRowIndex = 0;
 let wordList;
 let randomWord;
 
-console.log(enterKey);
-
 async function loadWords() {
     const response = await fetch('data/words.txt');
     const text = await response.text();
@@ -99,7 +97,6 @@ function windowListener(event) {
     validLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     if (validLetters.includes(event.key.toUpperCase())) {       
         letterEvent(event.key);
-        console.log('hi');
     } else if (event.key == 'Backspace') {
         backspaceEvent();
     } else if (event.key == 'Enter') {
