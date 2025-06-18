@@ -175,7 +175,7 @@ function checkMisplacedLetter(userWordArray, randomWordArray, styleArray) {
 
 window.addEventListener('keydown', windowListener);
 
-if (window.innerWidth >= 800) {
+if (window.innerWidth <= 800) {
     for (const letter of keyboardLetters) {
         letter.addEventListener('touchstart', () => letterEvent(letter.innerHTML));
     }
