@@ -175,17 +175,25 @@ function checkMisplacedLetter(userWordArray, randomWordArray, styleArray) {
 
 window.addEventListener('keydown', windowListener);
 
-for (const letter of keyboardLetters) {
-    letter.addEventListener('click', () => letterEvent(letter.innerHTML));
+if (window.innerWidth >= 800) {
+    for (const letter of keyboardLetters) {
+        letter.addEventListener('touchstart', () => letterEvent(letter.innerHTML));
+    }
+    enterKey.addEventListener('touchstart', enterEvent);
+    backspaceKey.addEventListener('touchstart', backspaceEvent);
+    restartBtn.addEventListener('touchstart', () => {
+        window.location.reload();
+    })
+} else {
+    for (const letter of keyboardLetters) {
+        letter.addEventListener('click', () => letterEvent(letter.innerHTML));
+    }
+    enterKey.addEventListener('click', enterEvent);
+    backspaceKey.addEventListener('click', backspaceEvent);
+    restartBtn.addEventListener('click', () => {
+        window.location.reload();
+    })
 }
-
-enterKey.addEventListener('touchstart', enterEvent);
-
-backspaceKey.addEventListener('touchstart', backspaceEvent);
-
-restartBtn.addEventListener('touchstart', () => {
-    window.location.reload();
-})
 
 loadWords();
 
