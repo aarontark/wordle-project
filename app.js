@@ -13,6 +13,13 @@ let currentIndex = 0;
 let guessRowIndex = 0;
 let wordList;
 let randomWord;
+let letterColors = {};
+
+for (element of keyboardLetters) {
+    letterColors[element.innerHTML] = element;
+}
+
+console.log(letterColors);
 
 async function loadWords() {
     const response = await fetch('data/words.txt');
@@ -108,10 +115,21 @@ function applyStyle(arrayIndex, delay, color) {
     setTimeout(() => {
         if (color == 'green') {
             arrayIndex.classList.add('pulse-anim-green');
+            if (!(letterColors[arrayIndex.innerHTML] == undefined)) {
+                letterColors[arrayIndex.innerHTML].style.backgroundColor = '#538d4e';
+                delete letterColors[arrayIndex.innerHTML];
+            }
         } else if (color == 'yellow') {
             arrayIndex.classList.add('pulse-anim-yellow');
+            if (!(letterColors[arrayIndex.innerHTML] == undefined)) {
+                letterColors[arrayIndex.innerHTML].style.backgroundColor = '#b59f3b';
+            }
         } else {
             arrayIndex.classList.add('pulse-anim-grey');
+            if (!(letterColors[arrayIndex.innerHTML] == undefined)) {
+                letterColors[arrayIndex.innerHTML].style.backgroundColor = '#3a3a3c';
+                delete letterColors[arrayIndex.innerHTML];
+            }
         }
     }, delay)
 }
