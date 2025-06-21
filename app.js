@@ -19,8 +19,6 @@ for (element of keyboardLetters) {
     letterColors[element.innerHTML] = element;
 }
 
-console.log(letterColors);
-
 async function loadWords() {
     const response = await fetch('data/words.txt');
     const text = await response.text();
@@ -113,22 +111,24 @@ function windowListener(event) {
 
 function applyStyle(arrayIndex, delay, color) {
     setTimeout(() => {
+        let letterStyle = letterColors[arrayIndex.innerHTML]
         if (color == 'green') {
             arrayIndex.classList.add('pulse-anim-green');
-            if (!(letterColors[arrayIndex.innerHTML] == undefined)) {
-                letterColors[arrayIndex.innerHTML].style.backgroundColor = '#538d4e';
+            if (!(letterStyle == undefined)) {
+                letterStyle.style.backgroundColor = '#538d4e';
                 delete letterColors[arrayIndex.innerHTML];
             }
         } else if (color == 'yellow') {
             arrayIndex.classList.add('pulse-anim-yellow');
-            if (!(letterColors[arrayIndex.innerHTML] == undefined)) {
-                letterColors[arrayIndex.innerHTML].style.backgroundColor = '#b59f3b';
+            if (!(letterStyle == undefined)) {
+                letterStyle.style.backgroundColor = '#b59f3b';
             }
         } else {
             arrayIndex.classList.add('pulse-anim-grey');
-            if (!(letterColors[arrayIndex.innerHTML] == undefined)) {
-                letterColors[arrayIndex.innerHTML].style.backgroundColor = '#3a3a3c';
-                delete letterColors[arrayIndex.innerHTML];
+            if (!(letterStyle == undefined)) {
+                if (!(letterStyle.style.backgroundColor == 'rgb(181, 159, 59)')) {
+                    letterStyle.style.backgroundColor = '#3a3a3c';
+                }
             }
         }
     }, delay)

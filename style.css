@@ -200,10 +200,18 @@ body {
 }
 
 @media (min-width: 500px) {
+    .game_container {
+        justify-content: space-around;
+    }
+
     .letter-input {
         width: 10%;
-        max-width: 3.5rem;
+        max-width: 3.25rem;
         font-size: 2rem;
+    }
+
+    .key_input {
+        max-width: 2.25rem;
     }
 }
 
